@@ -1,0 +1,67 @@
+<ion-header mode="ios" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <main class="h-full w-full flex flex-col items-center px-4 py-4">
+    <section class="flex flex-col">
+      <div class="flex">
+        <img class="h-24 w-24 object-cover rounded-md" src="assets\descarga.jpg" alt="">
+        <div class="flex flex-col ml-2">
+          <span>Nombre:Jose Perez</span>
+          <span>Rut: 11.111.111-1</span>
+          <span>Correo:jo.perez&#64;duocuc.cl</span>
+          <span>Numero: 123456789</span>
+        </div>
+      </div>
+        <ion-button expand="block" color="primary" class="rounded-md">
+          Editar Perfil
+        </ion-button>
+    </section>
+    <section class="flex flex-col px-2">
+      <ion-segment #opcion value="viajes_realizados">
+        <ion-segment-button value="viajes_realizados">
+          <ion-label class="text-xs">Viajes Realizados</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="viajes_solicitados">
+          <ion-label class="text-xs">Viajes Solicitados</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      @if (opcion.value == "viajes_realizados") {
+        <div class="flex flex-col w-full">
+          @for (viaje of viajes_realizados; track viaje) {
+            <section class="flex flex-col my-1 bg-slate-100 px-2 py-1 rounded-md shadow-md border border-slate-400">
+              <div class="w-full flex justify-between">
+                <span>{{viaje.fecha}}</span>
+                <span>{{viaje.monto}}</span>
+              </div>
+              <span>desde: {{viaje.desde}}</span>
+              <span>hasta: {{viaje.hasta}}</span>
+              <span class="self-end">estado: {{viaje.estado}}</span>
+            </section>
+          }
+        </div>  
+      } @else if (opcion.value == 'viajes_solicitados') {
+        <div class="flex flex-col w-full">
+          @for (viaje of viajes_solicitados; track viaje) {
+            <section class="flex flex-col my-1 bg-slate-100 px-2 py-1 rounded-md shadow-md border border-slate-400">
+              <div class="w-full flex justify-between">
+                <span>{{viaje.fecha}}</span>
+                <span>{{viaje.monto}}</span>
+              </div>
+              <span>desde: {{viaje.desde}}</span>
+              <span>hasta: {{viaje.hasta}}</span>
+              <span>chofer: {{viaje.conductor}}</span>
+              <span class="self-end">estado: {{viaje.estado}}</span>
+            </section>
+          }
+        </div>  
+      }
+    </section>
+  </main>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+  <main class="h-full w-full flex justify-center items-center bg-neutral-400 dark:bg-neutral-700">
+    <section
+      class="py-4 px-3 bg-neutral-100 w-3/4 flex flex-col justify-between border border-neutral-300 rounded-md shadow-md h-fit dark:bg-neutral-800 dark:border-neutral-900">
+      <h1 class="text-xl  font-bold text-center">Iniciar Sesión</h1>
+      <form class="my-4" #loginForm="ngForm">
+        <ion-list>
+          <ion-item>
+            <ion-input [(ngModel)]="credenciales.email" name="email" label="Correo Electronico" labelPlacement="stacked"
+              placeholder="jo.perez@duocuc.cl"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="password" [(ngModel)]="credenciales.password" name="password" label="Contraseña"
+              labelPlacement="stacked" placeholder="password"></ion-input>
+          </ion-item>
+          <ion-button class="px-2 my-4 text-neutral-200" expand="full" (click)="login()">Inicio Sesión</ion-button>
+        </ion-list>
+      </form>
+      <div class="w-full flex justify-between items-center text-sm">
+        <span>Olvidaste Contraseña</span>
+        <span [routerLink]="['/registro']">Registrarse</span>
+      </div>
+    </section>
+  </main>
+  <ion-alert [isOpen]="error" header="Ingresa tus credenciales" (didDismiss)="mostrarerror()" mode="ios"
+    message="Para iniciar sesion debes ingresar las credenciales" [buttons]="alertButtons"></ion-alert>
+</ion-content>
